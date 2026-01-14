@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersion Quest System - Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #8b4513;
+            --accent: #d4af37;
+            --success: #2d5f2e;
+            --light: #f5f5f5;
+            --dark: #1a1a1a;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding-bottom: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            background: #f1dfaf;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0 0.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        section {
+            margin: 2rem 0;
+            scroll-margin-top: 150px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .card {
+            background: #f7e7bb;
+            border-radius: 8px;
+            padding: 1.5rem 0.25rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card.success {
+            border-left-color: var(--success);
+        }
+
+        .card.accent {
+            border-left-color: var(--accent);
+        }
+
+        .step {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quest-item {
+            background: var(--light);
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .points {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .result {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--success);
+        }
+
+        .result strong {
+            color: var(--success);
+        }
+
+        .scenario-box {
+            background: #f7e7bb;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .scenario-title {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .integration-option {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+
+        .badge.recommended {
+            background: var(--success);
+        }
+
+        .badge.achievement {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        table th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table tr:hover {
+            background: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.55rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                overflow-x: visible;
+                white-space: normal;
+            }
+
+            nav a {
+                flex: 1 1 30%;
+                padding: 0.25rem 0.5rem;
+                margin: 0.125rem;
+                font-size: 0.85rem;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            table th, table td {
+                padding: 0.5rem;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, transparent 40%, var(--accent) 40%, var(--accent) 60%, transparent 60%, transparent 100%);
+            padding: 0.1rem 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '⚓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚓ Immersion Quest System</h1>
+        <p>Presentation for Immersion Coordinator</p>
+    </header>
+
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#factions">Factions</a>
+        <a href="#integration">Integration</a>
+        <a href="#implementation">Roadmap</a>
+    </nav>
+
+    <div class="container">
+        <!-- SYSTEM OVERVIEW -->
+        <section id="overview">
+            <h2>System Overview</h2>
+
+            <div class="card">
+                <h3>What We've Built</h3>
+                <p><strong>A complete gamification platform that combines:</strong></p>
+                <ul>
+                    <li><strong>Achievements</strong> - Multi-level progression tracks (Bronze → Silver → Gold → Platinum)</li>
+                    <li><strong>Quests</strong> - Completable challenges that award points</li>
+                    <li><strong>QR Codes</strong> - Instant verification for physical activities</li>
+                    <li><strong>Points & Levels</strong> - Progressive reward structure</li>
+                    <li><strong>Benefits</strong> - Website badges, VIP access, real-world rewards</li>
+                </ul>
+            </div>
+
+            <div class="card accent">
+                <h3>Key Categories</h3>
+                <span class="badge">Volunteer</span>
+                <span class="badge">Captain</span>
+                <span class="badge">Event</span>
+                <span class="badge">Banking</span>
+                <span class="badge">General</span>
+            </div>
+
+            <div class="card success">
+                <h3>Why This Matters</h3>
+                <p>This system bridges the gap between casual participation and the prestigious Titles Game. It provides:</p>
+                <ul>
+                    <li>Clear progression for new players</li>
+                    <li>Automated tracking and verification</li>
+                    <li>Real-time feedback and rewards</li>
+                    <li>Integration path to traditional Titles system</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SCENARIOS -->
+        <section id="scenarios">
+            <h2>Level-Up Scenarios</h2>
+            <p>See how different types of participants progress through the system:</p>
+
+            <!-- Scenario 1 -->
+            <div class="section-header">Scenario 1: The New Crew Member (Sarah)</div>
+            <div class="scenario-box">
+                <div class="scenario-title">Character: Sarah joins as a new attendee with no prior experience</div>
+
+                <h4>Phase 1: Getting Started (0-50 points)</h4>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">1</span> Attend Opening Ceremonies</div>
+                    <div class="quest-item">
+                        Quest: "First Steps" - Scan QR code at opening court
+                        <div class="points">+10 points</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">2</span> Join a Faction</div>
+                    <div class="quest-item">
+                        Quest: "Choose Your Side" - Visit faction booth and scan QR
+                        <div class="points">+5 points (booth) + 15 points (join crew)</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">3</span> Create Backstory</div>
+                    <div class="quest-item">
+                        Quest: "Tell Your Tale" - Submit character history on website
+                        <div class="points">+20 points</div>
+                    </div>
+                </div>
+
+                <div class="result">
+                    <strong>Result:</strong> Unlocks "Initiated" achievement (Level 1), earns "Recruit" badge on website profile
+                </div>
+
+                <h4>Phase 2: Building Reputation (50-150 points)</h4>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">1</span> Attend Faction Gatherings</div>
+                    <div class="quest-item">
+                        Quest: "Faction Loyalty" - Attend 3 gatherings (repeatable with cooldown)
+                        <div class="points">+10 points each = 30 points total</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">2</span> Help Your Ship</div>
+                    <div class="quest-item">
+                        Quest: "Ship Duties" - Clean camp, help with props, assist crew
+                        <div class="points">+10 points per task</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">3</span> Share Your Experience</div>
+                    <div class="quest-item">
+                        Quest: "Photo Gallery" - Submit event photos in costume
+                        <div class="points">+15 points</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">4</span> Recruit a Friend</div>
+                    <div class="quest-item">
+                        Quest: "Bring a Mate" - Refer new member who attends event
+                        <div class="points">+25 points</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">5</span> Perform Publicly</div>
+                    <div class="quest-item">
+                        Quest: "Sea Shanty Sing-Along" - Join public performance
+                        <div class="points">+20 points</div>
+                    </div>
+                </div>
+
+                <div class="result">
+                    <strong>Result:</strong> Reaches "Seasoned Sailor" achievement (Level 2), unlocks early access to event tickets
+                </div>
+
+                <h4>Phase 3: Faction Champion (150-400 points)</h4>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">1</span> Lead an Event</div>
+                    <div class="quest-item">
+                        Quest: "Faction Leader" - Host roleplay event with 10+ attendees
+                        <div class="points">+50 points</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">2</span> Win Competition</div>
+                    <div class="quest-item">
+                        Quest: "Olympic Champion" - Win faction Olympics event
+                        <div class="points">+75 points</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">3</span> Diversify Activities</div>
+                    <div class="quest-item">
+                        Quest: "Jack of All Trades" - Complete 5 different quest types
+                        <div class="points">+100 points total</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title"><span class="step-number">4</span> Mentor Others</div>
+                    <div class="quest-item">
+                        Quest: "Experienced Guide" - Mentor 2 new members through onboarding
+                        <div class="points">+50 points</div>
+                    </div>
+                </div>
+
+                <div class="result">
+                    <strong>Result:</strong> Achieves "Faction Elite" (Level 3), gains VIP seating at court ceremonies
+                </div>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="section-header">Scenario 2: The Ship Captain (Marcus)</div>
+            <div class="scenario-box">
+                <div class="scenario-title">Character: Marcus is a ship captain wanting to advance his leadership standing</div>
+                <p><strong>Goal:</strong> Captain Achievement Track (0-1000 points)</p>
+
+                <h4>Level 1: Quartermaster (0-200 pts)</h4>
+                <div class="quest-item">
+                    1. Register ship with event <span class="points">+25 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Recruit 5 crew members <span class="points">+50 pts</span>
+                </div>
+                <div class="quest-item">
+                    3. Submit crew manifest with backstories <span class="points">+50 pts</span>
+                </div>
+                <div class="quest-item">
+                    4. Lead ship meeting at event <span class="points">+50 pts</span>
+                </div>
+                <div class="quest-item">
+                    5. Participate in ship battle competition <span class="points">+25 pts</span>
+                </div>
+
+                <h4>Level 2: First Mate (200-500 pts)</h4>
+                <div class="quest-item">
+                    1. Organize cross-faction diplomatic mission <span class="points">+100 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Host ship-sponsored tavern night <span class="points">+75 pts</span>
+                </div>
+                <div class="quest-item">
+                    3. Complete "Fleet Commander" quest chain (3 quests) <span class="points">+150 pts total</span>
+                </div>
+                <div class="quest-item">
+                    4. Win "Best Ship Presentation" award <span class="points">+75 pts</span>
+                </div>
+
+                <h4>Level 3: Captain Recognized (500-1000 pts)</h4>
+                <div class="quest-item">
+                    1. Lead successful raid on rival faction <span class="points">+150 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Broker peace treaty between factions <span class="points">+200 pts</span>
+                </div>
+                <div class="quest-item">
+                    3. Sponsor new ship's entry to fleet <span class="points">+100 pts</span>
+                </div>
+                <div class="quest-item">
+                    4. Win "Captain's Cup" tournament <span class="points">+250 pts</span>
+                </div>
+
+                <div class="result">
+                    <strong>Unlock:</strong> "Legendary Captain" achievement
+                    <br><strong>Rewards:</strong> Reserved parking, ship priority docking, custom ship flag
+                </div>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="section-header">Scenario 3: The Volunteer (Emily)</div>
+            <div class="scenario-box">
+                <div class="scenario-title">Character: Emily loves helping behind the scenes</div>
+                <p><strong>Track:</strong> Volunteer Achievement</p>
+
+                <h4>Bronze Level (0-100 pts)</h4>
+                <div class="quest-item">
+                    1. Sign up for 3-hour shift at event booth <span class="points">+30 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Help set up/tear down infrastructure <span class="points">+20 pts per event</span>
+                </div>
+                <div class="quest-item">
+                    3. Staff water station during day <span class="points">+15 pts per shift</span>
+                </div>
+                <div class="quest-item">
+                    4. Complete safety training <span class="points">+35 pts</span>
+                </div>
+
+                <h4>Silver Level (100-300 pts)</h4>
+                <div class="quest-item">
+                    1. Coordinate volunteer schedule for one event <span class="points">+75 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Train 3 new volunteers <span class="points">+60 pts</span>
+                </div>
+                <div class="quest-item">
+                    3. Create volunteer handbook contribution <span class="points">+50 pts</span>
+                </div>
+                <div class="quest-item">
+                    4. Staff emergency response team <span class="points">+75 pts</span>
+                </div>
+
+                <h4>Gold Level (300-600 pts)</h4>
+                <div class="quest-item">
+                    1. Become department head for event season <span class="points">+200 pts</span>
+                </div>
+                <div class="quest-item">
+                    2. Recruit 10 new volunteers <span class="points">+100 pts</span>
+                </div>
+                <div class="quest-item">
+                    3. Perfect attendance at all events <span class="points">+150 pts</span>
+                </div>
+
+                <div class="result">
+                    <strong>Unlock:</strong> "Community Pillar" achievement
+                    <br><strong>Reward:</strong> Free event admission for next season
+                </div>
+            </div>
+        </section>
+
+        <!-- FACTION SCENARIOS -->
+        <section id="factions">
+            <h2>Faction-Specific Scenarios</h2>
+
+            <!-- Order of the Crown -->
+            <div class="section-header">Order of the Crown - Marcus Becomes Viscount</div>
+            <div class="card">
+                <h4>Theme: Aristocracy, Lineage, Ceremony</h4>
+                <p><strong>Achievement Track:</strong> Path to Peerage</p>
+                <ul>
+                    <li>Level 1: Baron/Baroness (200 pts)</li>
+                    <li>Level 2: Viscount (500 pts)</li>
+                    <li>Level 3: Earl/Count (1000 pts)</li>
+                    <li>Level 4: Duke/Duchess (2000 pts)</li>
+                </ul>
+            </div>
+
+            <h4>Step 1: Foundation Building (200 pts → Baron)</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quest</th>
+                        <th>Action</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Declaration of Lineage</td>
+                        <td>Submit noble lineage claim</td>
+                        <td>+50</td>
+                    </tr>
+                    <tr>
+                        <td>Court Attendance</td>
+                        <td>Attend opening court in formal attire</td>
+                        <td>+25</td>
+                    </tr>
+                    <tr>
+                        <td>Witness Verification</td>
+                        <td>Get 3 faction members to scan QR witness codes</td>
+                        <td>+75</td>
+                    </tr>
+                    <tr>
+                        <td>Tea Ceremony</td>
+                        <td>Host first tea ceremony at camp</td>
+                        <td>+50</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Step 2: Social Climbing (300 additional pts → Viscount)</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quest</th>
+                        <th>Action</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Noble Gatherings</td>
+                        <td>Attend 3 faction social events</td>
+                        <td>+90</td>
+                    </tr>
+                    <tr>
+                        <td>Bad Poetry Competition</td>
+                        <td>Perform "Poetry for the Uncultured"</td>
+                        <td>+75</td>
+                    </tr>
+                    <tr>
+                        <td>Family Tree</td>
+                        <td>Submit 4-generation genealogy</td>
+                        <td>+150</td>
+                    </tr>
+                    <tr>
+                        <td>Best Costume Award</td>
+                        <td>Win recognition at court</td>
+                        <td>+100</td>
+                    </tr>
+                    <tr>
+                        <td>Diplomatic Mission</td>
+                        <td>Participate in cross-faction event</td>
+                        <td>+135</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="result">
+                <strong>Total:</strong> 600 points → Achieves Viscount level
+                <br><strong>Time:</strong> 3-6 months depending on event attendance
+            </div>
+
+            <!-- Union of the Quill -->
+            <div class="section-header">Union of the Quill - Sarah Becomes Commissioner</div>
+            <div class="card">
+                <h4>Theme: Democracy, Diplomacy, Law</h4>
+                <p><strong>Achievement Track:</strong> Political Ladder</p>
+                <ul>
+                    <li>Level 1: Agent (200 pts)</li>
+                    <li>Level 2: Emissary (500 pts)</li>
+                    <li>Level 3: Commissioner (1000 pts)</li>
+                    <li>Level 4: Senator (2000 pts)</li>
+                </ul>
+            </div>
+
+            <h4>3-Step Path to Commissioner</h4>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">1</span> Agent Initiation (200 pts)</div>
+                <div class="quest-item">Submit "Intent to Serve" declaration <span class="points">+50</span></div>
+                <div class="quest-item">Attend faction recruitment drive <span class="points">+30</span></div>
+                <div class="quest-item">Get 3 witnesses to sign petition (QR scan) <span class="points">+60</span></div>
+                <div class="quest-item">Participate in first town hall meeting <span class="points">+60</span></div>
+            </div>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">2</span> Emissary Rising (300 additional pts)</div>
+                <div class="quest-item">Recruit 5 new faction members <span class="points">+125</span></div>
+                <div class="quest-item">Host town hall meeting <span class="points">+100</span></div>
+                <div class="quest-item">Submit campaign petition with 4 qualifications <span class="points">+75</span></div>
+            </div>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">3</span> Commissioner Campaign (500 additional pts)</div>
+                <div class="quest-item">Win puntification contest <span class="points">+75</span></div>
+                <div class="quest-item">Participate in public spectacle debate <span class="points">+150</span></div>
+                <div class="quest-item">Broker trade agreement between two ships <span class="points">+200</span></div>
+                <div class="quest-item">Deliver campaign speech at closing court <span class="points">+150</span></div>
+            </div>
+
+            <div class="result">
+                <strong>Total:</strong> 1000 points → Commissioner level
+                <br><strong>Time:</strong> 6-9 months with active participation
+            </div>
+
+            <!-- Alliance of the Key -->
+            <div class="section-header">Alliance of the Key - Emily Becomes Warden</div>
+            <div class="card">
+                <h4>Theme: Combat, Adventure, Glory</h4>
+                <p><strong>Achievement Track:</strong> Warrior's Path</p>
+                <ul>
+                    <li>Level 1: Ensign (200 pts)</li>
+                    <li>Level 2: Steward (500 pts)</li>
+                    <li>Level 3: Warden (1000 pts)</li>
+                    <li>Level 4: Marshal (2000 pts)</li>
+                </ul>
+            </div>
+
+            <h4>3-Step Path to Warden</h4>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">1</span> Ensign Enlistment (200 pts)</div>
+                <div class="quest-item">Submit "Account of Epic Deeds" <span class="points">+50</span></div>
+                <div class="quest-item">Participate in first ship battle <span class="points">+40</span></div>
+                <div class="quest-item">Get 3 witnesses to verify deeds (QR scan) <span class="points">+60</span></div>
+                <div class="quest-item">Create personal war banner <span class="points">+50</span></div>
+            </div>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">2</span> Steward Advancement (300 additional pts)</div>
+                <div class="quest-item">Complete "Epic Boasting" performance <span class="points">+75</span></div>
+                <div class="quest-item">Win "Longest John" storytelling battle <span class="points">+100</span></div>
+                <div class="quest-item">Submit "Saga of Acclaim" with 4 conquests <span class="points">+125</span></div>
+            </div>
+
+            <div class="step">
+                <div class="step-title"><span class="step-number">3</span> Warden Warfare (500 additional pts)</div>
+                <div class="quest-item">Lead successful faction raid <span class="points">+200</span></div>
+                <div class="quest-item">Complete combat training certification <span class="points">+150</span></div>
+                <div class="quest-item">Host "warrior's feast" gathering <span class="points">+100</span></div>
+                <div class="quest-item">Participate in 5 ship battles (repeatable) <span class="points">+250 total</span></div>
+                <div class="quest-item">Win faction combat tournament <span class="points">+200</span></div>
+            </div>
+
+            <div class="result">
+                <strong>Total:</strong> 1150 points → Warden level (with extra points)
+                <br><strong>Time:</strong> 9-12 months with competitive participation
+            </div>
+        </section>
+
+        <!-- INTEGRATION -->
+        <section id="integration">
+            <h2>Integration with Old Titles System</h2>
+            <p>How the new quest/achievement system enhances and modernizes the traditional Titles Game:</p>
+
+            <div class="integration-option">
+                <span class="badge recommended">RECOMMENDED</span>
+                <h3>Option 1: Parallel Tracks</h3>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Quest/Achievement system = Active participation and engagement</li>
+                    <li>Titles Game = Social/political roleplay prestige layer</li>
+                    <li>Achievements unlock eligibility for Title applications</li>
+                </ul>
+
+                <h4>Example Requirements:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Old System</th>
+                            <th>New Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tier 1</td>
+                            <td>50 Sterling + 3 witnesses</td>
+                            <td>Must have Level 2 achievement in faction category</td>
+                        </tr>
+                        <tr>
+                            <td>Tier 2</td>
+                            <td>100 Sterling + endorsements</td>
+                            <td>Must have Level 3 achievement + reduced endorsements</td>
+                        </tr>
+                        <tr>
+                            <td>Tier 3+</td>
+                            <td>Performance + more endorsements</td>
+                            <td>Performance quests award points AND satisfy requirements</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card success">
+                    <h4>Benefits:</h4>
+                    <ul>
+                        <li>Maintains Titles Game prestige</li>
+                        <li>Provides accessible entry point</li>
+                        <li>Clear progression: Quests → Achievements → Titles</li>
+                        <li>Digital tracking prevents lost paperwork</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="integration-option">
+                <h3>Option 2: Quest-Based Endorsements</h3>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Replace physical signatures with digital endorsement quests</li>
+                    <li>Witnesses scan QR codes to confirm endorsement</li>
+                    <li>System auto-generates "Patents of Nobility" documents</li>
+                </ul>
+
+                <h4>Example Flow:</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <strong>Step 1:</strong> Complete achievement milestones
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card">
+                            <strong>Step 2:</strong> Submit endorsement quest
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card">
+                            <strong>Step 3:</strong> Witnesses scan QR codes to endorse
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card">
+                            <strong>Step 4:</strong> System auto-validates requirements
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card">
+                            <strong>Step 5:</strong> Pay Sterling via banking app
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="card success">
+                            <strong>Step 6:</strong> Instant approval → Ceremonial recognition at court
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4>Staff Time Saved:</h4>
+                    <p class="highlight"><strong>70% reduction in manual verification</strong></p>
+                    <ul>
+                        <li>Real-time progress tracking</li>
+                        <li>Digital signatures with timestamps</li>
+                        <li>Automated validation</li>
+                        <li>No lost paperwork</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="integration-option">
+                <h3>Option 3: Achievement-Gated Titles</h3>
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>Replace endorsement counts with achievement milestones</li>
+                    <li>Keep Sterling costs and maintenance contracts</li>
+                    <li>Public spectacles become quests that award points AND satisfy Tier requirements</li>
+                </ul>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Achievement Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tier 1</td>
+                            <td>Any 3 Level 2 achievements</td>
+                        </tr>
+                        <tr>
+                            <td>Tier 2</td>
+                            <td>2x Level 3 + 1x Level 2 achievements</td>
+                        </tr>
+                        <tr>
+                            <td>Tier 3</td>
+                            <td>Level 4 achievement in faction-aligned category</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION ROADMAP -->
+        <section id="implementation">
+            <h2>Implementation Roadmap</h2>
+
+            <div class="card">
+                <h3>Phase 1: Launch (Months 1-3)</h3>
+                <p><strong>Goal:</strong> Get core system live and tested</p>
+
+                <h4>Tasks:</h4>
+                <ul>
+                    <li>Create 5 achievements per category (25 total)</li>
+                    <li>Deploy 20 basic quests across all categories</li>
+                    <li>Test QR code system at first event</li>
+                    <li>Train 10 staff members on manual review process</li>
+                    <li>Launch player dashboard with progress tracking</li>
+                </ul>
+
+                <h4>Success Metrics:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account Creation Rate</td>
+                            <td>40% of attendees</td>
+                        </tr>
+                        <tr>
+                            <td>Quests Completed</td>
+                            <td>100+ in first event</td>
+                        </tr>
+                        <tr>
+                            <td>System Stability</td>
+                            <td>Zero critical bugs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Phase 2: Engagement (Months 4-6)</h3>
+                <p><strong>Goal:</strong> Increase repeat participation</p>
+
+                <h4>Tasks:</h4>
+                <ul>
+                    <li>Add 30 repeatable quests with cooldowns</li>
+                    <li>Introduce first achievement prestige system</li>
+                    <li>Launch 3 faction-specific quest chains</li>
+                    <li>Deploy mobile QR scanning improvements</li>
+                    <li>Create leaderboards (faction, individual, ship)</li>
+                </ul>
+
+                <h4>Success Metrics:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Return User Rate</td>
+                            <td>60%</td>
+                        </tr>
+                        <tr>
+                            <td>Avg Quests per User</td>
+                            <td>5 per event</td>
+                        </tr>
+                        <tr>
+                            <td>Quest Chain Completion</td>
+                            <td>20%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Phase 3: Social (Months 7-9)</h3>
+                <p><strong>Goal:</strong> Build community connections</p>
+
+                <h4>Tasks:</h4>
+                <ul>
+                    <li>Introduce endorsement quests (bridge to Titles)</li>
+                    <li>Add friend/crew quest sharing</li>
+                    <li>Launch mentor system with bonuses</li>
+                    <li>Deploy cross-faction collaborations</li>
+                    <li>Automated court announcements</li>
+                </ul>
+
+                <h4>Success Metrics:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Multi-User Quests</td>
+                            <td>50% of completions</td>
+                        </tr>
+                        <tr>
+                            <td>Mentor Participation</td>
+                            <td>30% of veterans</td>
+                        </tr>
+                        <tr>
+                            <td>Ship Engagement</td>
+                            <td>70% of captains active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card success">
+                <h3>Phase 4: Endgame (Months 10-12)</h3>
+                <p><strong>Goal:</strong> Retain veteran players</p>
+
+                <h4>Tasks:</h4>
+                <ul>
+                    <li>Deploy high-level tracks (2000+ points)</li>
+                    <li>Integrate Titles eligibility</li>
+                    <li>Create seasonal exclusive content</li>
+                    <li>Launch "Hall of Legends"</li>
+                    <li>Implement real-world rewards</li>
+                </ul>
+
+                <h4>Success Metrics:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Season Retention</td>
+                            <td>80%</td>
+                        </tr>
+                        <tr>
+                            <td>Level 3 Achievement</td>
+                            <td>30% of users</td>
+                        </tr>
+                        <tr>
+                            <td>Titles Eligibility</td>
+                            <td>10% of users</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card accent">
+                <h3>Quick Start Guide</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Week 1:</strong> Review this guide with immersion coordinator
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Week 2:</strong> Prioritize top 10 quests to deploy first
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Week 3:</strong> Test QR system with staff
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Week 4:</strong> Soft launch at next event (5 achievements, 15 quests)
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Month 2:</strong> Gather feedback, iterate
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Month 3:</strong> Full launch with leaderboards and rewards
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY -->
+        <section>
+            <h2>Key Takeaways</h2>
+
+            <div class="card">
+                <h3>What This System Provides</h3>
+                <ul>
+                    <li><strong>Multiple Progression Paths:</strong> Casual, competitive, social, and leadership tracks</li>
+                    <li><strong>Clear Goals:</strong> Players always know what's next</li>
+                    <li><strong>Automated Tracking:</strong> Real-time progress, no paperwork</li>
+                    <li><strong>Bridge to Titles:</strong> Natural path from quests to prestigious titles</li>
+                    <li><strong>Community Building:</strong> Cross-faction collaboration, mentorship</li>
+                </ul>
+            </div>
+
+            <div class="card success">
+                <h3>Why This Works</h3>
+                <ul>
+                    <li><strong>Accessible:</strong> New players can immediately start earning</li>
+                    <li><strong>Engaging:</strong> Repeatable content keeps veterans active</li>
+                    <li><strong>Social:</strong> Many quests require collaboration</li>
+                    <li><strong>Flexible:</strong> Can be casual or hardcore</li>
+                    <li><strong>Rewarding:</strong> Website badges → VIP perks → Titles</li>
+                </ul>
+            </div>
+
+            <div class="card accent">
+                <h3>Next Steps</h3>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">1</span> Review & Discuss</div>
+                    <p>Go through this presentation with stakeholders</p>
+                </div>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">2</span> Choose Integration</div>
+                    <p>Decide which Titles integration option fits best</p>
+                </div>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">3</span> Prioritize Quests</div>
+                    <p>Select 10-15 quests for initial launch</p>
+                </div>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">4</span> Test System</div>
+                    <p>Run pilot at next event with limited scope</p>
+                </div>
+                <div class="step">
+                    <div class="step-title"><span class="step-number">5</span> Iterate & Expand</div>
+                    <p>Gather feedback and add more content</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
